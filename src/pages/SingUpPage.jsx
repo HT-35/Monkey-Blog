@@ -1,33 +1,61 @@
+import Input from "components/input";
+import Label from "components/label";
+import { ShowProvider } from "contexts/showContext";
 import React from "react";
-//import Accordian from "../components/accordian/Accordian";
+
+import { useForm } from "react-hook-form";
 
 const SingUpPage = () => {
-  return (
-    <div className="max-w-[500px] mx-auto flex flex-col mt-5 gap-5  shadow-md bg-white p-8 rounded ">
-      <div className="w-full grid grid-cols-1 place-items-center">
-        <img src="./img/monkey.png" alt="" className="w-[121px]" />
-        <h1 className="font-semibold text-[40px] leading-[60px] text-primary">
-          Monkey Blogging
-        </h1>
-      </div>
+  const { handleSubmit, control, reset } = useForm();
 
-      <form action="#">
-        <div className="grid grid-cols-1 gap-1">
-          <label
-            htmlFor="fullName"
-            className="text-[20px] leading-[30px] font-semibold"
-          >
-            Full Name
-          </label>
-          <input
-            type="text"
-            id="fullName"
-            placeholder="Please enter your fullname"
-            className="border-[1px] font-normal text-[20px] leading-[30px] placeholder:text-[#C4C4C4] border-[#999999] w-full rounded-lg outline-primary px-4 p-1 "
-          />
+  return (
+    <ShowProvider>
+      <div className="max-w-[600px] mx-auto flex flex-col  gap-3   bg-white p-6 rounded ">
+        <div className="w-full grid grid-cols-1 place-items-center">
+          <img src="./img/monkey.png" alt="" className="w-[80px]" />
+          <h1 className="font-semibold text-3xl leading-[60px] text-primary">
+            Monkey Blogging
+          </h1>
         </div>
-      </form>
-    </div>
+
+        <form
+          action="#"
+          onSubmit={handleSubmit((data) => {
+            console.log(data);
+            setTimeout(() => {
+              reset({
+                fullName: "",
+              });
+            }, 100);
+          })}
+        >
+          <div className="grid grid-cols-1 gap-1">
+            <Label
+              htmlFor="fullName"
+              className="text-[20px] leading-[30px] font-semibold"
+            >
+              Full Name
+            </Label>
+            <Input
+              control={control}
+              name="fullName"
+              type="text"
+              id="fullName"
+              placeholder="Please enter your fullname"
+            ></Input>
+          </div>
+
+          <div className="w-full flex justify-center mt-5">
+            <button
+              type="submit"
+              className="btn-search  w-[250px] select-none text-white font-semibold rounded-lg active:text-black"
+            >
+              SIGN UP
+            </button>
+          </div>
+        </form>
+      </div>
+    </ShowProvider>
   );
 };
 

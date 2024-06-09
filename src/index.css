@@ -9,5 +9,48 @@ html {
 }
 
 body {
-  @apply bg-slate-300;
+  /*@apply bg-slate-300;*/
+  @apply transition-all duration-500;
+}
+
+/* hover change bg - gradian */
+
+.btn-search {
+  position: relative;
+  padding: 0.5rem;
+  color: white;
+
+  border-radius: 8px;
+  background-image: linear-gradient(to bottom right, #00a7b4, #a4d96c);
+
+  z-index: 1;
+}
+
+.btn-search:active::before {
+  position: absolute;
+  border-radius: 8px;
+
+  content: "";
+
+  inset: 0;
+  background-image: linear-gradient(to bottom right, #00a7b4, #a4d96c);
+  z-index: -1;
+  transition: opacity 0.3s linear;
+  opacity: 0;
+}
+
+.btn-search::before {
+  border-radius: 8px;
+  position: absolute;
+  content: "";
+
+  inset: 0;
+  background-image: linear-gradient(to bottom, #a4d96c, #00a7b4);
+  z-index: -1;
+  transition: opacity 0.3s linear;
+  opacity: 0;
+}
+
+.btn-search:hover::before {
+  opacity: 1;
 }
