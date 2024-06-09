@@ -6,7 +6,7 @@ function App() {
   return (
     <AuthProvider>
       <Routes>
-        <Route path="/sing-up" Component={SingUpPage}></Route>
+        <Route path="/sign-up" Component={SingUpPage}></Route>
       </Routes>
     </AuthProvider>
   );
