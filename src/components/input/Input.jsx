@@ -29,7 +29,7 @@ const Input = ({
         type={type}
         id={name}
         className={`border-[1px] font-normal text-[20px] leading-[30px] placeholder:text-[#C4C4C4] border-[#999999] w-full rounded-lg outline-primary px-4 
-        ${hasIcon ? "px-2 pr-8 py-2" : "p-2"}`}
+        ${hasIcon ? "px-2 pr-8 py-2" : "p-2"} select-none`}
         {...props}
         {...field}
       />

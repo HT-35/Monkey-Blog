@@ -33,7 +33,7 @@ const SingUpPage = () => {
             <div className="grid grid-cols-1 gap-1">
               <Label
                 htmlFor="fullName"
-                className="text-[20px] leading-[30px] font-semibold"
+                className="text-[20px] leading-[30px] font-semibold select-none"
               >
                 Full Name
               </Label>
