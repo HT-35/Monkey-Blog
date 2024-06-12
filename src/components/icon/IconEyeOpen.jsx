@@ -1,19 +1,10 @@
-import React, { useState } from "react";
-
 import PropTypes from "prop-types";
 
-const IconEyeOpen = ({ className = "", ...props }) => {
+const IconEyeOpen = ({ className = "", onClick = () => {}, ...props }) => {
   //console.log("props:", props);
 
-  const [active, setActive] = useState(false);
-
   return (
-    <div
-      onClick={() => {
-        setActive((prv) => !prv);
-      }}
-      className={className}
-    >
+    <div onClick={onClick()} className={className}>
       <svg
         width="22"
         height="14"

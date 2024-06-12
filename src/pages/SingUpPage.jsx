@@ -29,22 +29,23 @@ const SingUpPage = () => {
             }, 100);
           })}
         >
-          <div className="grid grid-cols-1 gap-1">
-            <Label
-              htmlFor="fullName"
-              className="text-[20px] leading-[30px] font-semibold"
-            >
-              Full Name
-            </Label>
-            <Input
-              control={control}
-              name="fullName"
-              type="text"
-              id="fullName"
-              placeholder="Please enter your fullname"
-            ></Input>
-          </div>
-
+          <ShowProvider>
+            <div className="grid grid-cols-1 gap-1">
+              <Label
+                htmlFor="fullName"
+                className="text-[20px] leading-[30px] font-semibold"
+              >
+                Full Name
+              </Label>
+              <Input
+                control={control}
+                name="fullName"
+                type="text"
+                id="fullName"
+                placeholder="Please enter your fullname"
+              ></Input>
+            </div>
+          </ShowProvider>
           <div className="w-full flex justify-center mt-5">
             <button
               type="submit"

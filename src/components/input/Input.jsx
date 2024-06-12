@@ -1,8 +1,9 @@
 import React from "react";
 
 import PropTypes from "prop-types";
-import { IconEyeOpen } from "components/icon";
+import { IconEyeClose, IconEyeOpen } from "components/icon";
 import { useController } from "react-hook-form";
+import { useShowContext } from "contexts/showContext";
 
 const Input = ({
   name = "",
@@ -11,6 +12,10 @@ const Input = ({
   hasIcon = true,
   ...props
 }) => {
+  const { show, activeShow } = useShowContext();
+  console.log("activeShow:", activeShow);
+  console.log("show:", show);
+
   const { field } = useController({
     control,
     name,
@@ -28,12 +33,25 @@ const Input = ({
         {...props}
         {...field}
       />
-      {hasIcon ? (
+      {/*{hasIcon ? (
         <IconEyeOpen
           className="absolute right-2 top-[50%] -translate-y-[50%] 
         hover:cursor-pointer "
         ></IconEyeOpen>
-      ) : null}
+      ) : null}*/}
+      {show ? (
+        <IconEyeOpen
+          className="absolute right-2 top-[50%] -translate-y-[50%] 
+        hover:cursor-pointer "
+          onClick={activeShow((show) => !show)}
+        ></IconEyeOpen>
+      ) : (
+        <IconEyeClose
+          className="absolute right-2 top-[50%] -translate-y-[50%] 
+        hover:cursor-pointer "
+          onClick={activeShow((show) => !show)}
+        ></IconEyeClose>
+      )}
     </div>
   );
 };
