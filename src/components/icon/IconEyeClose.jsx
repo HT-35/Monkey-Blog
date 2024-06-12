@@ -2,7 +2,7 @@ import React from "react";
 
 const IconEyeClose = ({ className, onClick = () => {}, ...props }) => {
   return (
-    <div className={className} onClick={onClick()}>
+    <div className={className} onClick={() => onClick()}>
       <svg
         width="22"
         height="20"

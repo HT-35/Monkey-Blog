@@ -4,7 +4,7 @@ const IconEyeOpen = ({ className = "", onClick = () => {}, ...props }) => {
   //console.log("props:", props);
 
   return (
-    <div onClick={onClick()} className={className}>
+    <div onClick={() => onClick()} className={className}>
       <svg
         width="22"
         height="14"

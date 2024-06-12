@@ -46,6 +46,7 @@ const SingUpPage = () => {
               ></Input>
             </div>
           </ShowProvider>
+
           <div className="w-full flex justify-center mt-5">
             <button
               type="submit"
