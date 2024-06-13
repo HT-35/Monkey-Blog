@@ -1,10 +1,8 @@
 import PropTypes from "prop-types";
 
-const IconEyeOpen = ({ className = "", onClick = () => {}, ...props }) => {
-  //console.log("props:", props);
-
+const IconEyeOpen = ({ className = "", ...props }) => {
   return (
-    <div onClick={() => onClick()} className={className}>
+    <div className={className}>
       <svg
         width="22"
         height="14"

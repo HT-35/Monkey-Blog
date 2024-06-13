@@ -13,7 +13,7 @@ body {
   @apply transition-all duration-500;
 }
 
-/* hover change bg - gradian */
+/* hover change button bg-gradian */
 
 .btn-search {
   position: relative;
@@ -53,4 +53,9 @@ body {
 
 .btn-search:hover::before {
   opacity: 1;
+}
+
+/* Field Input  */
+.field-input {
+  @apply grid grid-cols-1 gap-2;
 }

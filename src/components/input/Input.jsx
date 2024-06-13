@@ -1,19 +1,17 @@
 import React from "react";
 
 import PropTypes from "prop-types";
-import { IconEyeClose, IconEyeOpen } from "components/icon";
 import { useController } from "react-hook-form";
-import { useShowContext } from "contexts/showContext";
 
 const Input = ({
   name = "",
   type = "text",
   control,
-  hasIcon = true,
+
+  children,
   ...props
 }) => {
-  const { show, activeShow } = useShowContext();
-  console.log("show:", show);
+  //console.log("show:", show);
 
   const { field } = useController({
     control,
@@ -22,31 +20,27 @@ const Input = ({
     defaultValue: "",
   });
 
+  //console.log(type);
   return (
     <div className={`w-full relative `}>
       <input
-        //type={type || "text"}
-        type={hasIcon && show ? type : "password"}
+        //type={show ? "text" : type}
+        type={type}
         id={name}
         className={`border-[1px] font-normal text-[20px] leading-[30px] placeholder:text-[#C4C4C4] border-[#999999] w-full rounded-lg outline-primary px-4 
-        ${hasIcon ? "px-2 pr-8 py-2" : "p-2"}  select-none`}
+        ${children ? "px-2 pr-8 py-2" : "p-2"}  select-none`}
         {...props}
         {...field}
       />
 
-      {show ? (
-        <IconEyeOpen
+      {children ? (
+        <div
           className="absolute right-2 top-[50%] -translate-y-[50%]  select-none
         hover:cursor-pointer "
-          onClick={activeShow}
-        ></IconEyeOpen>
-      ) : (
-        <IconEyeClose
-          className="absolute right-2 top-[50%] -translate-y-[50%]  select-none
-        hover:cursor-pointer "
-          onClick={activeShow}
-        ></IconEyeClose>
-      )}
+        >
+          {children}
+        </div>
+      ) : null}
     </div>
   );
 };
