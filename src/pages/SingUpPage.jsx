@@ -1,6 +1,8 @@
+import Button from "components/button/Button";
 import { IconEyeClose, IconEyeOpen } from "components/icon";
 import Input from "components/input";
 import Label from "components/label";
+import { LoaddingSpinner } from "components/loadding";
 
 import React, { useState } from "react";
 
@@ -11,10 +13,6 @@ const SingUpPage = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   console.log("showPassword:", showPassword);
-
-  const toggleShowPassword = () => {
-    setShowPassword((prevShowPassword) => !prevShowPassword);
-  };
 
   return (
     <div>
@@ -104,12 +102,10 @@ const SingUpPage = () => {
           </div>
 
           <div className="w-full flex justify-center ">
-            <button
-              type="submit"
-              className="btn-search  w-[250px] select-none text-white font-semibold rounded-lg active:text-black"
-            >
+            <Button type="submit">
               SIGN UP
-            </button>
+              <LoaddingSpinner></LoaddingSpinner>
+            </Button>
           </div>
         </form>
       </div>
