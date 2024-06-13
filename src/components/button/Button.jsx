@@ -1,3 +1,4 @@
+import { LoadingSpinner } from "components/loadding";
 import React from "react";
 
 const Button = ({
@@ -7,16 +8,20 @@ const Button = ({
   disabled,
   ...props
 }) => {
+  const { isloading } = props;
+
+  const child = isloading === "true" ? <LoadingSpinner /> : children;
+
   return (
     <button
       type={type}
       onClick={onClick}
       {...props}
-      className={`btn-search  w-full select-none text-white font-semibold rounded-lg active:text-black
+      className={`btn-search  w-[300px] mx-auto h-[50px] select-none text-white font-semibold rounded-lg active:text-black 
 			${disabled ? "opacity-50 pointer-events-none" : ""}
 			`}
     >
-      {children}
+      <span className="flex justify-center align-center w-full">{child}</span>
     </button>
   );
 };

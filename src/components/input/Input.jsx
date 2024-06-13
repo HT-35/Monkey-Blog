@@ -5,13 +5,14 @@ import { useController } from "react-hook-form";
 
 const Input = ({
   name = "",
+  id = "",
   type = "text",
   control,
-
+  errors,
   children,
   ...props
 }) => {
-  //console.log("show:", show);
+  console.log("errors:", errors);
 
   const { field } = useController({
     control,
@@ -20,11 +21,9 @@ const Input = ({
     defaultValue: "",
   });
 
-  //console.log(type);
   return (
     <div className={`w-full relative `}>
       <input
-        //type={show ? "text" : type}
         type={type}
         id={name}
         className={`border-[1px] font-normal text-[20px] leading-[30px] placeholder:text-[#C4C4C4] border-[#999999] w-full rounded-lg outline-primary px-4 
@@ -41,6 +40,8 @@ const Input = ({
           {children}
         </div>
       ) : null}
+      {errors?.Password && <span>{errors?.Password?.message}</span>}
+      {/*<p>{errors?.Password?.message}</p>*/}
     </div>
   );
 };

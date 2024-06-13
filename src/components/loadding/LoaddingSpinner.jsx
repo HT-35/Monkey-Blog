@@ -1,9 +1,9 @@
 import React from "react";
 
-const LoaddingSpinner = () => {
+const LoadingSpinner = () => {
   return (
-    <div className="w-9 h-9  animate-spin border-4  border-r-transparent  rounded-full"></div>
+    <div className="w-6 h-6  animate-spin border-4 border-l-transparent border-r-transparent  rounded-full"></div>
   );
 };
 
-export default LoaddingSpinner;
+export default LoadingSpinner;
