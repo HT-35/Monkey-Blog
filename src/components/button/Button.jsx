@@ -8,11 +8,10 @@ const Button = ({
   onClick = () => {},
   children,
   disabled,
+  isloading,
   ...props
 }) => {
-  const { isloading } = props;
-
-  const child = isloading === "true" ? <LoadingSpinner /> : children;
+  const child = isloading ? <LoadingSpinner /> : children;
 
   return (
     <button
@@ -33,6 +32,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   children: PropTypes.string,
   disabled: PropTypes.bool,
+  isloading: PropTypes.bool,
   props: PropTypes.object,
 };
 

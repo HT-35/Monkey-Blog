@@ -2,7 +2,7 @@ import Button from "components/button/Button";
 import { IconEyeClose, IconEyeOpen } from "components/icon";
 import Input from "components/input";
 import Label from "components/label";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 // validate form
@@ -11,9 +11,11 @@ import * as yup from "yup";
 import { Bounce, toast } from "react-toastify";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "firebase-app/firebase-config";
-import { update, values } from "lodash";
-import { useNavigate } from "react-router-dom";
+
+import { NavLink, useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
+import AuthenticationPage from "./AuthenticationPage";
+import useActive from "hooks/useActive";
 
 //Schema validate form
 
@@ -37,8 +39,8 @@ const SingUpPage = () => {
     resolver: yupResolver(schema),
   });
 
-  const [showPassword, setShowPassword] = useState(false);
-
+  //const [showPassword, setShowPassword] = useState(false);
+  const { active: showPassword, handleActive: setShowPassword } = useActive();
   async function handleSignUp(data) {
     try {
       console.log(data);
@@ -47,7 +49,7 @@ const SingUpPage = () => {
       if (!isValid) return;
 
       // Tạo một người dùng mới với email và mật khẩu được cung cấp
-      const user = await createUserWithEmailAndPassword(
+      await createUserWithEmailAndPassword(
         auth,
         data.EmailAddress,
         data.Password
@@ -89,7 +91,7 @@ const SingUpPage = () => {
 
   useEffect(() => {
     const arrErrors = Object.values(errors);
-    //console.log("arrErrors:", arrErrors);
+    console.log("errors:", errors);
     if (arrErrors.length > 0) {
       arrErrors.forEach((item) =>
         toast.error(item.message, {
@@ -108,95 +110,76 @@ const SingUpPage = () => {
     }
   }, [errors]);
 
+  useEffect(() => {
+    document.title = "Register Page";
+  }, []);
+
   return (
-    <div>
-      <div className="max-w-[600px] mx-auto flex flex-col  gap-3   bg-white p-6 rounded ">
-        <div className="w-full grid grid-cols-1 place-items-center">
-          <img src="./img/monkey.png" alt="" className="w-[80px]" />
-          <h1 className="font-semibold text-3xl leading-[60px] text-primary">
-            Monkey Blogging
-          </h1>
+    <AuthenticationPage>
+      <form
+        action="#"
+        className="grid grid-cols-1 gap-4 place-content-center"
+        onSubmit={handleSubmit(handleSignUp)}
+      >
+        <div className="field-input">
+          <Label htmlFor="fullName">Full Name</Label>
+          <Input
+            control={control}
+            name="fullName"
+            type="text"
+            id="fullName"
+            placeholder="Please enter your fullname"
+          ></Input>
         </div>
 
-        <form
-          action="#"
-          className="grid grid-cols-1 gap-4 place-content-center"
-          onSubmit={handleSubmit(handleSignUp)}
-        >
-          <div className="field-input">
-            <Label
-              htmlFor="fullName"
-              className="text-[20px] leading-[30px] font-semibold select-none"
-            >
-              Full Name
-            </Label>
-            <Input
-              control={control}
-              errors={errors}
-              name="fullName"
-              type="text"
-              id="fullName"
-              placeholder="Please enter your fullname"
-            ></Input>
-          </div>
+        <div className="field-input">
+          <Label htmlFor="EmailAddress">Email Address</Label>
+          <Input
+            control={control}
+            name="EmailAddress"
+            type="email"
+            id="EmailAddress"
+            placeholder="Please enter your email address"
+          ></Input>
+        </div>
 
-          <div className="field-input">
-            <Label
-              htmlFor="EmailAddress"
-              className="text-[20px] leading-[30px] font-semibold select-none"
-            >
-              Email Address
-            </Label>
-            <Input
-              control={control}
-              errors={errors}
-              name="EmailAddress"
-              type="email"
-              id="EmailAddress"
-              placeholder="Please enter your email address"
-            ></Input>
-          </div>
-
-          <div className="field-input">
-            <Label
-              htmlFor="EmailAddress"
-              className="text-[20px] leading-[30px] font-semibold select-none"
-            >
-              Password
-            </Label>
-            <Input
-              control={control}
-              errors={errors}
-              name="Password"
-              //type="password"
-              type={showPassword ? "text" : "password"}
-              id="Password"
-              placeholder="Please enter your email address"
-            >
-              {!showPassword ? (
-                <div className="p-1" onClick={() => setShowPassword(true)}>
-                  <IconEyeOpen></IconEyeOpen>
-                </div>
-              ) : (
-                <div className="p-1" onClick={() => setShowPassword(false)}>
-                  <IconEyeClose></IconEyeClose>
-                </div>
-              )}
-            </Input>
-          </div>
-
-          {/*<Button type="submit" disabled={true} isloading={true}>*/}
-          <Button
-            type="submit"
-            disabled={isSubmitting}
-            isloading={isSubmitting.toString()}
+        <div className="field-input">
+          <Label htmlFor="EmailAddress">Password</Label>
+          <Input
+            control={control}
+            errors={errors}
+            name="Password"
+            //type="password"
+            type={showPassword ? "text" : "password"}
+            id="Password"
+            placeholder="Please enter your email address"
           >
-            SIGN UP
-            {/*<LoaddingSpinner></LoaddingSpinner>*/}
-          </Button>
-        </form>
-      </div>
-    </div>
+            {!showPassword ? (
+              <div className="p-2" onClick={() => setShowPassword()}>
+                <IconEyeOpen></IconEyeOpen>
+              </div>
+            ) : (
+              <div className="p-2" onClick={() => setShowPassword()}>
+                <IconEyeClose></IconEyeClose>
+              </div>
+            )}
+          </Input>
+        </div>
+
+        <div className="my-1 font-medium">
+          M đã có tài khoản rồi hả thằng lol này ?
+          <NavLink to={"/sign-in"} className="text-red-500 italic">
+            Login
+          </NavLink>
+        </div>
+
+        {/*<Button type="submit" disabled={true} isloading={true}>*/}
+        <Button type="submit" disabled={isSubmitting} isloading={isSubmitting}>
+          SIGN UP
+          {/*<LoaddingSpinner></LoaddingSpinner>*/}
+        </Button>
+      </form>
+    </AuthenticationPage>
   );
 };
 

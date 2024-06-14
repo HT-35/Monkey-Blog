@@ -9,6 +9,7 @@ const Label = ({ htmlFor, children, ...props }) => {
         htmlFor={htmlFor}
         //className="text-[20px] leading-[30px] font-semibold"
         {...props}
+        className="text-[20px] leading-[30px] font-semibold select-none"
       >
         {children}
       </label>

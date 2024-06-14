@@ -8,12 +8,13 @@ function AuthProvider(props) {
   const [userInfo, setUserInfo] = useState({});
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      console.log(user);
+      //console.log(user);
+      setUserInfo(user);
     });
   }, []);
   return (
     <AuthContext.Provider
-      value={{ userInfo, setUserInfo }}
+      value={{ userInfo }}
       {...props}
     ></AuthContext.Provider>
   );

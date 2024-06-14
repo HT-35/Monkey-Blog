@@ -32,7 +32,7 @@ const Input = ({
 
       {children ? (
         <div
-          className="absolute right-2 top-[50%] -translate-y-[50%]  select-none
+          className="absolute right-0 top-[50%] -translate-y-[50%]  select-none
         hover:cursor-pointer "
         >
           {children}
@@ -46,7 +46,7 @@ Input.propTypes = {
   type: PropTypes.string,
   name: PropTypes.string,
   props: PropTypes.object,
-  control: PropTypes.object,
+  control: PropTypes.object.isRequired,
 };
 
 export default Input;
