@@ -8,12 +8,10 @@ const Input = ({
   id = "",
   type = "text",
   control,
-  errors,
+
   children,
   ...props
 }) => {
-  console.log("errors:", errors);
-
   const { field } = useController({
     control,
     name,
@@ -40,8 +38,6 @@ const Input = ({
           {children}
         </div>
       ) : null}
-      {errors?.Password && <span>{errors?.Password?.message}</span>}
-      {/*<p>{errors?.Password?.message}</p>*/}
     </div>
   );
 };

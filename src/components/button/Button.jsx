@@ -1,6 +1,8 @@
 import { LoadingSpinner } from "components/loadding";
 import React from "react";
 
+import PropTypes from "prop-types";
+
 const Button = ({
   type = "button",
   onClick = () => {},
@@ -24,6 +26,14 @@ const Button = ({
       <span className="flex justify-center align-center w-full">{child}</span>
     </button>
   );
+};
+
+Button.propTypes = {
+  type: PropTypes.string.isRequired(),
+  onClick: PropTypes.func,
+  children: PropTypes.string,
+  disabled: PropTypes.bool,
+  props: PropTypes.object,
 };
 
 export default Button;

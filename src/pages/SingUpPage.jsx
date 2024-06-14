@@ -2,12 +2,18 @@ import Button from "components/button/Button";
 import { IconEyeClose, IconEyeOpen } from "components/icon";
 import Input from "components/input";
 import Label from "components/label";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 // validate form
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { Bounce, toast } from "react-toastify";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth, db } from "firebase-app/firebase-config";
+import { update, values } from "lodash";
+import { useNavigate } from "react-router-dom";
+import { addDoc, collection } from "firebase/firestore";
 
 //Schema validate form
 
@@ -18,11 +24,13 @@ const schema = yup.object({
 });
 
 const SingUpPage = () => {
+  const navigate = useNavigate();
+
   const {
     handleSubmit,
     control,
-    reset,
-    watch,
+    //reset,
+    //watch,
     formState: { errors, isValid, isSubmitting },
   } = useForm({
     mode: "onChange",
@@ -31,16 +39,74 @@ const SingUpPage = () => {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  function handleSignUp(data) {
-    console.log(data);
-    if (!isValid) return;
-    // vì quá trình submit quá nhanh nên làm vậy để kéo dài thời gian và test loading
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve();
-      }, 5000);
-    });
+  async function handleSignUp(data) {
+    try {
+      console.log(data);
+
+      // Kiểm tra tính hợp lệ của dữ liệu
+      if (!isValid) return;
+
+      // Tạo một người dùng mới với email và mật khẩu được cung cấp
+      const user = await createUserWithEmailAndPassword(
+        auth,
+        data.EmailAddress,
+        data.Password
+      );
+
+      // Cập nhật hồ sơ của người dùng hiện tại
+      await updateProfile(auth.currentUser, {
+        displayName: data.fullName,
+      });
+
+      // tạo collection trong firebase database
+      const colRef = collection(db, "users");
+      addDoc(colRef, {
+        name: data.fullName,
+        email: data.EmailAddress,
+        password: data.Password,
+      });
+
+      // Hiển thị thông báo đăng ký thành công
+      toast.success("Đăng ký thành công!!!");
+      // Điều hướng đến trang chủ hoặc trang khác
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      // Xử lý các lỗi cụ thể
+      if (error.code === "auth/email-already-in-use") {
+        toast.error("Địa chỉ email đã được sử dụng.");
+      } else if (error.code === "auth/invalid-email") {
+        toast.error("Địa chỉ email không hợp lệ.");
+      } else if (error.code === "auth/operation-not-allowed") {
+        toast.error("Tài khoản email/mật khẩu chưa được kích hoạt.");
+      } else if (error.code === "auth/weak-password") {
+        toast.error("Mật khẩu quá yếu.");
+      } else {
+        toast.error(`Lỗi: ${error.message}`);
+      }
+    }
   }
+
+  useEffect(() => {
+    const arrErrors = Object.values(errors);
+    //console.log("arrErrors:", arrErrors);
+    if (arrErrors.length > 0) {
+      arrErrors.forEach((item) =>
+        toast.error(item.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        })
+      );
+      //toast("Loi roi d m m");
+    }
+  }, [errors]);
 
   return (
     <div>

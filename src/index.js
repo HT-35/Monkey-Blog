@@ -7,6 +7,10 @@ import { createRoot } from "react-dom/client";
 
 import { BrowserRouter } from "react-router-dom";
 
+//   fw toastify show errors
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const container = document.getElementById("root");
 const root = createRoot(container);
 
@@ -14,6 +18,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <App />
+      <ToastContainer></ToastContainer>
     </BrowserRouter>
   </React.StrictMode>
 );
