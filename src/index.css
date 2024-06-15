@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  /*@apply bg-slate-300;*/
+  @apply bg-slate-300;
   /*@apply transition-all duration-500;*/
   /*@apply max-w-screen-2xl lg:px-16 lg:py-5 max-lg:px-5 max-lg:py-5 max-sm:py-2;*/
 }
