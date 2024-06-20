@@ -7,6 +7,9 @@ module.exports = {
         primary: "#2EBAC1",
         title: "#3A1097",
       },
+      boxShadow: {
+        custom: "0px 12px 25px -12px #A783F126",
+      },
     },
   },
   plugins: [],

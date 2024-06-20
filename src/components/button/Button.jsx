@@ -9,6 +9,7 @@ const Button = ({
   children,
   disabled,
   isloading,
+  className,
   ...props
 }) => {
   const child = isloading ? <LoadingSpinner /> : children;
@@ -18,9 +19,13 @@ const Button = ({
       type={type}
       onClick={onClick}
       {...props}
-      className={`btn-search  w-[300px] mx-auto h-[50px] select-none text-white font-semibold rounded-lg active:text-black 
+      className={
+        className
+          ? className
+          : `btn-search  w-[300px] mx-auto h-[50px] select-none text-white font-semibold rounded-lg active:text-black 
 			${disabled ? "opacity-50 pointer-events-none" : ""}
-			`}
+			`
+      }
     >
       <span className="flex justify-center align-center w-full">{child}</span>
     </button>
@@ -31,6 +36,7 @@ Button.propTypes = {
   type: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   children: PropTypes.string,
+  className: PropTypes.string,
   disabled: PropTypes.bool,
   isloading: PropTypes.bool,
   props: PropTypes.object,

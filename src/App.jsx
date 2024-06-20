@@ -12,6 +12,24 @@ function App() {
         <Route path="/" Component={HomePage}></Route>
         <Route path="/sign-up" Component={SingUpPage}></Route>
         <Route path="/sign-in" Component={SignInPgae}></Route>
+
+        <Route
+          path="/Blog"
+          element={
+            <>
+              <h1>Blog</h1>
+            </>
+          }
+        ></Route>
+
+        <Route
+          path="/Contact"
+          element={
+            <>
+              <h1>Contact</h1>
+            </>
+          }
+        ></Route>
       </Routes>
     </AuthProvider>
   );
