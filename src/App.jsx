@@ -3,6 +3,7 @@ import { AuthProvider } from "./contexts/authContext";
 import SingUpPage from "pages/SingUpPage";
 import SignInPgae from "pages/SignInPgae";
 import HomePage from "pages/HomePage";
+import NotFoudPage from "pages/NotFoudPage";
 
 function App() {
   return (
@@ -30,6 +31,8 @@ function App() {
             </>
           }
         ></Route>
+
+        <Route path="/*" Component={NotFoudPage}></Route>
       </Routes>
     </AuthProvider>
   );

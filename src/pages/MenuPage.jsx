@@ -1,35 +1,52 @@
 import { Button } from "components/button";
 import { IconSearch } from "components/icon";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const MenuPage = (props) => {
   const navigate = useNavigate();
+
+  const menu = [
+    {
+      to: "/",
+      title: "Home",
+    },
+    {
+      to: "/blog",
+      title: "Blog",
+    },
+    {
+      to: "/contact",
+      title: "Contact",
+    },
+  ];
 
   return (
     <div>
       <header className="nav flex justify-between lg:text-2xl max-sm:text-base py-2 mb-2">
         <div className="nav flex justify-center items-center gap-8 max-sm:gap-3">
-          <img src="./img/monkey.png" alt="" srcSet="" className="w-10" />
-          <ul className="flex justify-center items-center gap-8">
-            <li
+          <NavLink to="/">
+            <img
+              src="./img/monkey.png"
+              alt=""
+              srcSet=""
               onClick={() => navigate("/")}
-              className="cursor-pointer px-4 py-4 font-semibold"
-            >
-              Home
-            </li>
-            <li
-              onClick={() => navigate("/Blog")}
-              className="cursor-pointer px-4 py-4 font-semibold"
-            >
-              Blog
-            </li>
-            <li
-              onClick={() => navigate("/Contact")}
-              className="cursor-pointer px-4 py-4 font-semibold"
-            >
-              Contact
-            </li>
+              className="w-10"
+            />
+          </NavLink>
+          <ul className="flex justify-center items-center gap-8">
+            {menu.map((item) => {
+              return (
+                <li to={item.to}>
+                  <NavLink
+                    to={item.to}
+                    className="cursor-pointer px-4 py-4 font-semibold"
+                  >
+                    {item.title}
+                  </NavLink>
+                </li>
+              );
+            })}
           </ul>
         </div>
         <div className="search flex justify-between gap-6">

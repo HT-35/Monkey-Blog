@@ -59,8 +59,6 @@ const HomePage = () => {
     },
   ];
 
-  const navigate = useNavigate();
-
   return (
     <div className="max-w-screen-2xl mx-auto w-full  lg:pt-6 lg:px-8 max-lg:px-4 max-lg:pt-5 max-sm:py-2 bg-white h-[5000px]">
       <MenuPage>
