@@ -1,5 +1,7 @@
 import Heading from "components/layout/Heading";
 import React from "react";
+import PostCategory from "../posts/PostCategory";
+import PostTitle from "../posts/PostTitle";
 
 const HomeFeature = () => {
   return (
@@ -19,9 +21,11 @@ const HomeFeature = () => {
         >
           <div className=" text-white px-4 py-5 grid grid-cols-1 gap-2">
             <div className="sub-title flex justify-between">
-              <div className="bg-white text-[#6B6B6B] px-3 py-1 rounded-xl text-sm font-semibold">
+              {/*<div className=" px-3 py-1 rounded-xl text-sm font-semibold"></div>*/}
+              <PostCategory bgColor="bg-white text-[#6B6B6B]">
+                {" "}
                 Kiến thức
-              </div>
+              </PostCategory>
               <div className="date flex justify-between items-center gap-3">
                 <div className="">Mar 23</div>
                 <div className="">
@@ -40,9 +44,10 @@ const HomeFeature = () => {
             </div>
             <div className="title"></div>
             <div className="">
-              <p className="text-xl font-semibold">
+              <PostTitle>
+                {" "}
                 Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
-              </p>
+              </PostTitle>
             </div>
           </div>
         </div>
@@ -58,9 +63,10 @@ const HomeFeature = () => {
         >
           <div className=" text-white px-4 py-5 grid grid-cols-1 gap-2">
             <div className="sub-title flex justify-between">
-              <div className="bg-white text-[#6B6B6B] px-3 py-1 rounded-xl text-sm font-semibold">
+              <PostCategory bgColor="bg-white text-[#6B6B6B]">
+                {" "}
                 Kiến thức
-              </div>
+              </PostCategory>
               <div className="date flex justify-between items-center gap-3">
                 <div className="">Mar 23</div>
                 <div className="">
@@ -79,9 +85,9 @@ const HomeFeature = () => {
             </div>
             <div className="title"></div>
             <div className="">
-              <p className="text-xl font-semibold">
+              <PostTitle>
                 Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
-              </p>
+              </PostTitle>
             </div>
           </div>
         </div>
@@ -99,9 +105,10 @@ const HomeFeature = () => {
           <div className=" text-white px-4 py-5 grid grid-cols-1 gap-2">
             <>
               <div className="sub-title flex justify-between">
-                <div className="bg-white text-[#6B6B6B] px-3 py-1 rounded-xl text-sm font-semibold">
+                <PostCategory bgColor="bg-white text-[#6B6B6B]">
+                  {" "}
                   Kiến thức
-                </div>
+                </PostCategory>
                 <div className="date flex justify-between items-center gap-3">
                   <div className="">Mar 23</div>
                   <div className="">
@@ -120,9 +127,9 @@ const HomeFeature = () => {
               </div>
               <div className="title"></div>
               <div className="">
-                <p className="text-xl font-semibold">
+                <PostTitle>
                   Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
-                </p>
+                </PostTitle>
               </div>
             </>
           </div>

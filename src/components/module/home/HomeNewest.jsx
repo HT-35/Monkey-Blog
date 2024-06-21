@@ -1,5 +1,7 @@
 import Heading from "components/layout/Heading";
 import React from "react";
+import PostCategory from "../posts/PostCategory";
+import PostTitle from "../posts/PostTitle";
 
 const HomeNewest = () => {
   const listSlideNews = [
@@ -38,12 +40,14 @@ const HomeNewest = () => {
             srcSet=""
           />
           <div className="title-new  mt-3  flex flex-col justify-between gap-2">
-            <span className="bg-[#F3EDFF] text-[#6B6B6B] px-3 py-1 rounded-[10px] text-sm font-semibold max-w-[120px] text-center">
-              kiến thức
-            </span>
-            <h1 className="font-semibold">
+            <PostCategory bgColor="bg-[#F3EDFF] text-[#6B6B6B]">
+              Kiến thức
+            </PostCategory>
+
+            <PostTitle className="text-[22px]">
+              {" "}
               Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
-            </h1>
+            </PostTitle>
             <div className="date flex justify-start items-center gap-3 text-[#6B6B6B]">
               <div className="">Mar 23</div>
               <div className="">
@@ -73,10 +77,12 @@ const HomeNewest = () => {
                 />
               </div>
               <div className="title flex flex-col justify-between gap-1 basis-1/2">
-                <span className="bg-white text-[#6B6B6B] px-3 py-1 rounded-[10px] text-sm font-semibold max-w-[120px] text-center">
-                  kiến thức
-                </span>
-                <p className="font-semibold ">{news.title}</p>
+                <PostCategory bgColor="bg-white text-[#6B6B6B]">
+                  Kiến thức
+                </PostCategory>
+
+                <PostTitle className="text-[18px]">{news.title}</PostTitle>
+
                 <div className="date flex justify-start items-center gap-3 text-[#6B6B6B]">
                   <div className="">{news.date}</div>
                   <div className="">

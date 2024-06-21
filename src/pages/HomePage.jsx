@@ -4,6 +4,8 @@ import Layout from "components/layout/Layout";
 import HomeBanner from "components/module/home/HomeBanner";
 import HomeFeature from "components/module/home/HomeFeature";
 import HomeNewest from "components/module/home/HomeNewest";
+import PostCategory from "components/module/posts/PostCategory";
+import PostTitle from "components/module/posts/PostTitle";
 
 const HomePage = () => {
   const listSlide = [
@@ -55,10 +57,8 @@ const HomePage = () => {
                     className="w-full max-h-[224px] rounded-lg"
                   />
                   <div className="title flex flex-col justify-between gap-2">
-                    <span className="bg-[#F3EDFF] text-[#6B6B6B] px-3 py-1 rounded-[10px] text-sm font-semibold max-w-[120px] text-center">
-                      kiến thức
-                    </span>
-                    <p className="font-semibold ">{title}</p>
+                    <PostCategory>Kiến thức </PostCategory>
+                    <PostTitle className="text-[18px]">{title}</PostTitle>
                     <div className="date flex justify-start items-center gap-3 text-[#6B6B6B]">
                       <div className="">{date}</div>
                       <div className="">
