@@ -60,3 +60,8 @@ body {
 .field-input {
   @apply grid grid-cols-1 gap-2;
 }
+
+/* heading title */
+.heading-title {
+  @apply text-xl font-semibold text-title mb-8 select-none relative py-2 before:absolute before:w-[35px] before:top-0 before:h-[3px] before:bg-[#00D1ED] before:rounded-lg;
+}
