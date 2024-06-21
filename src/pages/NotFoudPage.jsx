@@ -9,7 +9,9 @@ const NotFoudPage = () => {
         <img src="./img/monkey.png" alt="" className="w-2/3 select-none" />
       </NavLink>
       <h1 className="text-2xl font-semibold">Oops! Page not found</h1>
-      <Button>Back to home</Button>
+      <Button type="button" to="/">
+        Back to home
+      </Button>
     </div>
   );
 };

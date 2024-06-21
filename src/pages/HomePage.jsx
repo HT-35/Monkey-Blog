@@ -1,8 +1,7 @@
-import { IconSearch } from "components/icon";
-import { auth } from "firebase-app/firebase-config";
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import MenuPage from "./MenuPage";
+
+import Layout from "components/layout/Layout";
+import HomeBanner from "components/module/home/HomeBanner";
 
 const HomePage = () => {
   const listSlideNews = [
@@ -61,27 +60,8 @@ const HomePage = () => {
 
   return (
     <div className="max-w-screen-2xl mx-auto w-full  lg:pt-6 lg:px-8 max-lg:px-4 max-lg:pt-5 max-sm:py-2 bg-white h-[5000px]">
-      <MenuPage>
-        <aside className="w-full h-[600px] bg-gradient-to-br from-[#00B4AA] to-[#A4D96C] flex flex-row  pt-10 px-10">
-          <div className="basis-1/3 content text-white flex flex-col gap-8 ">
-            <h1 className="text-[48px] font-bold">Monkey Blogging</h1>
-            <p className="text-sm ">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi.
-            </p>
-            <button
-              type="button"
-              className="bg-white py-4 px-11 text-[#23BB86] text-lg w-[300px] h-[80px]  rounded-lg"
-            >
-              Get Started
-            </button>
-          </div>
-          <div className="img basis-2/3 flex justify-center">
-            <img src="./img/money.png" alt="" srcSet="" className="w-full" />
-          </div>
-        </aside>
+      <Layout>
+        <HomeBanner></HomeBanner>
         <main className="mt-8 grid grid-cols-1 gap-5">
           <div className="Feature">
             <h1 className="text-xl font-semibold text-title mb-8 select-none">
@@ -255,45 +235,15 @@ const HomePage = () => {
               </div>
               {/*  */}
               <div className="slide-new  p-6 bg-[#F3EDFF] rounded-[15px] grid grid-cols-1 gap-[28px]">
-                {listSlideNews.map((item, index) => {
-                  const { title, linkImg, date, auth } = item;
-
-                  return (
-                    <>
-                      <div
-                        key={index}
-                        className="item flex justify-between gap-5"
-                      >
-                        <img
-                          src={linkImg}
-                          alt=""
-                          className="w-1/4 rounded-lg"
-                        />
-                        <div className="title flex flex-col justify-between">
-                          <span className="bg-[#FFFFFF] text-[#6B6B6B] px-3 py-1 rounded-[10px] text-sm font-semibold max-w-[120px] text-center">
-                            kiến thức
-                          </span>
-                          <p className="font-semibold">{title}</p>
-                          <div className="date flex justify-start items-center gap-3 text-[#6B6B6B]">
-                            <div className="">{date}</div>
-                            <div className="">
-                              <svg
-                                width="6"
-                                height="6"
-                                viewBox="0 0 6 6"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <circle cx="3" cy="3" r="3" fill="#B1B5C3" />
-                              </svg>
-                            </div>
-                            <div className="">{auth}</div>
-                          </div>
-                        </div>
-                      </div>
-                    </>
-                  );
-                })}
+                {listSlideNews.map((news, index) => (
+                  <div key={index} className="news-item">
+                    {/* Render your news item here */}
+                    <img src={news.linkImg} alt={news.title} />
+                    <h2>{news.title}</h2>
+                    <p>{news.date}</p>
+                    <p>{news.auth}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -302,42 +252,39 @@ const HomePage = () => {
             {listSlide.map((item, index) => {
               const { title, linkImg, date, auth } = item;
               return (
-                <>
-                  <div key={index} className="item flex flex-col gap-5 ">
-                    <img
-                      src={linkImg}
-                      alt=""
-                      className="w-full max-h-[224px] rounded-lg"
-                    />
-                    <div className="title flex flex-col justify-between gap-2">
-                      <span className="bg-[#F3EDFF] text-[#6B6B6B] px-3 py-1 rounded-[10px] text-sm font-semibold max-w-[120px] text-center">
-                        kiến thức
-                      </span>
-                      <p className="font-semibold">{title}</p>
-                      <div className="date flex justify-start items-center gap-3 text-[#6B6B6B]">
-                        <div className="">{date}</div>
-                        <div className="">
-                          <svg
-                            width="6"
-                            height="6"
-                            viewBox="0 0 6 6"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <circle cx="3" cy="3" r="3" fill="#B1B5C3" />
-                          </svg>
-                        </div>
-                        <div className="">{auth}</div>
+                <div key={index} className="item flex flex-col gap-5 ">
+                  <img
+                    src={linkImg}
+                    alt=""
+                    className="w-full max-h-[224px] rounded-lg"
+                  />
+                  <div className="title flex flex-col justify-between gap-2">
+                    <span className="bg-[#F3EDFF] text-[#6B6B6B] px-3 py-1 rounded-[10px] text-sm font-semibold max-w-[120px] text-center">
+                      kiến thức
+                    </span>
+                    <p className="font-semibold">{title}</p>
+                    <div className="date flex justify-start items-center gap-3 text-[#6B6B6B]">
+                      <div className="">{date}</div>
+                      <div className="">
+                        <svg
+                          width="6"
+                          height="6"
+                          viewBox="0 0 6 6"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <circle cx="3" cy="3" r="3" fill="#B1B5C3" />
+                        </svg>
                       </div>
+                      <div className="">{auth}</div>
                     </div>
                   </div>
-                </>
+                </div>
               );
             })}
           </div>
         </main>
-        <footer></footer>
-      </MenuPage>
+      </Layout>
     </div>
   );
 };
