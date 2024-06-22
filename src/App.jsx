@@ -32,7 +32,7 @@ function App() {
           }
         ></Route>
 
-        <Route path="/*" Component={NotFoudPage}></Route>
+        {/*<Route path="/*" Component={NotFoudPage}></Route>*/}
       </Routes>
     </AuthProvider>
   );
